@@ -41,7 +41,8 @@ class Participante(models.Model):
         related_name="participantes",
         verbose_name="Evento Asociado",
         null=False,  # Equivalente a NOT NULL en SQL
-        blank=False  # Obligatorio en el formulario
+        blank=False,  # Obligatorio en el formulario
+        default=1  # ID del evento por defecto (ajusta según tu base de datos)
     )
     nombre = models.CharField(
         max_length=100,

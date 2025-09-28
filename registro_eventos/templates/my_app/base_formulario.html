@@ -1,0 +1,7 @@
+<form method="POST">
+    {% csrf_token %}
+    {% block formulario_campo %}
+    {{ form.as_p }}
+    {% endblock %}
+    <button type="submit">Enviar</button>
+</form>

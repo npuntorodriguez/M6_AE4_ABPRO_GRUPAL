@@ -1,0 +1,24 @@
+{%extends "base.html"%}
+
+{% block title %}Página de inicio{% endblock %}
+
+{% block content %}
+    <h2>Contenido principal</h2>
+    <p>Bienvenido a la página de inicio.</p>
+    <ul>
+  {% for evento in eventos %}
+    <li>
+        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+            <p><strong>Nombre del Evento:</strong> {{ evento.nombre }}</p>
+            <p><strong>Fecha:</strong> {{ evento.fecha }}</p>
+            <p><strong>Ubicación:</strong> {{ evento.ubicacion }}</p>
+            {% for participantes in evento.participantes.all %}
+                <p><strong>participantes:</strong> {{ participantes.nombre }}</p>
+            {% endfor %}
+        </div>
+    </li>
+  {% empty %}
+    <li>No hay eventos disponibles.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

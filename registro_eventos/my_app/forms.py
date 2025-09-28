@@ -39,3 +39,15 @@ class ParticipanteForm(forms.ModelForm):
     class Meta:
         model = Participante
         fields = ['nombre', 'correo']
+
+    def __init__(self, *args, **kwargs):
+        self.evento = kwargs.pop('evento', None)
+        super().__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        correo = cleaned_data.get('correo')
+        if self.evento and correo:
+            if Participante.objects.filter(evento=self.evento, correo=correo).exists():
+                raise ValidationError("Ya existe un participante con este correo en el evento.")
+        return cleaned_data
