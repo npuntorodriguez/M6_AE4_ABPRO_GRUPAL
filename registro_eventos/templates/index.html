@@ -3,22 +3,32 @@
 {% block title %}Página de inicio{% endblock %}
 
 {% block content %}
-    <h2>Contenido principal</h2>
-    <p>Bienvenido a la página de inicio.</p>
-    <ul>
-  {% for evento in eventos %}
-    <li>
-        <div style="display: flex; align-items: center; margin-bottom: 10px;">
-            <p><strong>Nombre del Evento:</strong> {{ evento.nombre }}</p>
-            <p><strong>Fecha:</strong> {{ evento.fecha }}</p>
-            <p><strong>Ubicación:</strong> {{ evento.ubicacion }}</p>
-            {% for participantes in evento.participantes.all %}
-                <p><strong>participantes:</strong> {{ participantes.nombre }}</p>
-            {% endfor %}
+    <h2>Aplicación de Registro de Eventos</h2>
+    <p>Bienvenido a la aplicación de registro de eventos. Aquí puedes gestionar tus eventos y participantes.</p>
+
+    <div class= "row">
+      {% for evento in eventos %}
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">{{ evento.nombre }}</h5>
+              <p class="card-text"><strong>Fecha:</strong> {{ evento.fecha }}</p>
+              <p class="card-text"><strong>Ubicación:</strong> {{ evento.ubicacion }}</p>
+              <h6 class="mt-3">Participantes:</h6>
+              {% if evento.participantes.all %}
+                <ul class="list-unstyled">
+                  {% for participante in evento.participantes.all %}
+                    <li>{{ participante.nombre }}</li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <p class="text-muted">No hay participantes registrados.</p>
+              {% endif %}
+            </div>
+          </div>
         </div>
-    </li>
-  {% empty %}
-    <li>No hay eventos disponibles.</li>
-  {% endfor %}
-</ul>
-{% endblock %}
+      {% empty %}
+      <p class="text-muted">No hay eventos disponibles.</p>
+      {% endfor %}
+    </div>
+    {% endblock %}

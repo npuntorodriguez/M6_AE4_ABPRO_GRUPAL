@@ -12,6 +12,8 @@ class EventoForm(forms.ModelForm):
         fields = ['nombre', 'fecha', 'ubicacion']
         widgets = {
             'fecha': forms.DateInput(attrs={'type': 'date'}),
+            'nombre': forms.TextInput(attrs={'placeholder': 'Nombre del evento'}),
+            'ubicacion': forms.TextInput(attrs={'placeholder': 'Ubicación del evento'}),
         }
 
     def clean_nombre(self):
@@ -39,6 +41,10 @@ class ParticipanteForm(forms.ModelForm):
     class Meta:
         model = Participante
         fields = ['nombre', 'correo']
+        widgets = {
+            'nombre': forms.TextInput(attrs={'placeholder': 'Nombre del participante'}),
+            'correo': forms.EmailInput(attrs={'placeholder': 'Correo electrónico'}),
+        }
 
     def __init__(self, *args, **kwargs):
         self.evento = kwargs.pop('evento', None)
