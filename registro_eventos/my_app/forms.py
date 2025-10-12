@@ -11,9 +11,18 @@ class EventoForm(forms.ModelForm):
         model = Evento
         fields = ['nombre', 'fecha', 'ubicacion']
         widgets = {
-            'fecha': forms.DateInput(attrs={'type': 'date'}),
-            'nombre': forms.TextInput(attrs={'placeholder': 'Nombre del evento'}),
-            'ubicacion': forms.TextInput(attrs={'placeholder': 'Ubicación del evento'}),
+            'nombre': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Nombre del evento'
+            }),
+            'fecha': forms.DateInput(attrs={
+                'class': 'form-control',
+                'type': 'date'
+            }),
+            'ubicacion': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Ubicación del evento'
+            }),
         }
 
     def clean_nombre(self):

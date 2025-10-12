@@ -1,5 +1,27 @@
 {% extends 'my_app/base_formulario.html' %}
 
 {% block formulario_campo %}
-    {{ form.as_p }}
+    <div class="mb-3">
+        <label for="{{ form.nombre.id_for_label }}" class="form-label">{{ form.nombre.label }}</label>
+        {{ form.nombre }}
+        {% if form.nombre.errors %}
+            <div class="text-danger">{{ form.nombre.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="mb-3">
+        <label for="{{ form.fecha.id_for_label }}" class="form-label">{{ form.fecha.label }}</label>
+        {{ form.fecha }}
+        {% if form.fecha.errors %}
+            <div class="text-danger">{{ form.fecha.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="mb-3">
+        <label for="{{ form.ubicacion.id_for_label }}" class="form-label">{{ form.ubicacion.label }}</label>
+        {{ form.ubicacion }}
+        {% if form.ubicacion.errors %}
+            <div class="text-danger">{{ form.ubicacion.errors }}</div>
+        {% endif %}
+    </div>
 {% endblock %}
